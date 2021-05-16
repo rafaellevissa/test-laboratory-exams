@@ -9,7 +9,7 @@ class LaboratorySchema extends Schema {
       table.increments()
       table.string('name').unique().notNullable()
       table.string('address').notNullable()
-      table.enu('status', ['active', 'inactive']).defaultTo('active')
+      table.enu('status', ['ativo', 'inativo']).defaultTo('ativo')
       table.timestamps()
     })
   }

@@ -15,7 +15,8 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+const Env = use('Env')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return `<a href='/docs'> Acesse esse link para ser direcionado para a documentação</a>`
 })

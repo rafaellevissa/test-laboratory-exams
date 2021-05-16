@@ -7,6 +7,10 @@ class ExamSchema extends Schema {
   up () {
     this.create('exams', (table) => {
       table.increments()
+      table.string('name').unique().notNullable()
+      table.string('address').notNullable()
+      table.enu('type', ['analise', 'clinica', 'imagem']).notNullable()
+      table.enu('status', ['ativo', 'inativo']).defaultTo('ativo')
       table.timestamps()
     })
   }
