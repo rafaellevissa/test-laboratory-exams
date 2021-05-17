@@ -2,18 +2,6 @@ version: "3.5"
 
 services:
 
-  app:
-    build: .
-    container_name: laboratory_api
-    volumes:
-      - ./:/app
-    ports:
-      - ${PORT}:3344
-    env_file:
-      - .env
-    depends_on:
-      - mysql
-
   mysql:
     image: mysql
     container_name: laboratory_database
@@ -28,3 +16,15 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     env_file:
       - .env
+
+  app:
+    build: .
+    container_name: laboratory_api
+    volumes:
+      - ./:/app
+    ports:
+      - ${PORT}:3344
+    env_file:
+      - .env
+    depends_on:
+      - mysql

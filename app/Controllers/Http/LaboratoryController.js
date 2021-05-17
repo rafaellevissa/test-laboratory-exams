@@ -47,7 +47,9 @@ class LaboratoryController {
     if (status !== null && (status !== 'ativo' || status !== 'inativo')) {
       return response.status(401).json({ msg: 'Invalid value for status' })
     }
-    const data = await LaboratoryRepository.store({ name, address, status })
+
+    const statusFormated = status === null ? 'ativo' : status
+    const data = await LaboratoryRepository.store({ name, address, status: statusFormated })
     return response.json(data)
   }
   async update({ request, response, params }) {
@@ -67,7 +69,7 @@ class LaboratoryController {
 
     const { name = null, address = null, status = null } = request.only([["name"], ["address"], ["status"]])
 
-    if (status !== null && (status !== 'ativo' || status !== 'inativo')) {
+    if (status !== null && (status !== 'ativo' && status !== 'inativo')) {
       return response.status(401).json({ msg: 'Invalid value for status' })
     }
     const laboratoryUpdated = await LaboratoryRepository.update({ laboratory, data: { id, name, address, status } })
