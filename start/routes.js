@@ -18,3 +18,8 @@ Route.post('/exame', 'ExameController.store')
 Route.put('/exame/:id', 'ExameController.update')
 Route.get('/exame/:id', 'ExameController.unique')
 Route.delete('/exame/:id', 'ExameController.remove')
+
+Route.get('/laboratories-exames', 'LaboratoryExameController.all')
+Route.post('/laboratory-exame', 'LaboratoryExameController.store')
+Route.get('/laboratory-exame/:id', 'LaboratoryExameController.unique')
+Route.delete('/laboratory-exame/:id', 'LaboratoryExameController.remove')

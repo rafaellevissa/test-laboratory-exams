@@ -34,6 +34,12 @@ class LaboratoryRepository {
     const laboratory = await this.findByID(id)
     await laboratory.delete()
   }
+
+  static async validatesIfItIsActive(id) {
+    const laboratory = await this.findByID(id)
+    const validation = laboratory.status === "ativo" ? true : false
+    return validation
+  }
 }
 
 module.exports = LaboratoryRepository

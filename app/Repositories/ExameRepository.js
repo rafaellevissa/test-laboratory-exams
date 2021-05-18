@@ -34,6 +34,12 @@ class ExameRepository {
     const exame = await this.findByID(id)
     await exame.delete()
   }
+
+  static async validatesIfItIsActive(id) {
+    const exame = await this.findByID(id)
+    const validation = exame.status === "ativo" ? true : false
+    return validation
+  }
 }
 
 module.exports = ExameRepository
