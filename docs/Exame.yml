@@ -1,0 +1,141 @@
+/exame:
+  post:
+    description: Register a exame
+    tags:
+      - Exame
+    produces:
+      - application/json
+    parameters:
+      - name: name
+        description: Name to use for create a exame.
+        in: body
+        required: true
+        type: string
+      - name: type
+        description: Type to use for create a exame.
+        in: body
+        required: true
+        schema:
+          type: string
+          enum: ['analise', 'clinica', 'imagem']
+      - name: status
+        description: Status to use for create a exame.
+        in: body
+        schema:
+          type: string
+          enum: [ativo, inativo]
+    responses:
+      200:
+        description: Exame successfully registered
+        schema:
+          $ref: '#/definitions/Exame'
+/exame/:id:
+  put:
+    tags:
+      - Exame
+    description: Update a exame
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the exame.
+        in: query
+        required: true
+        type: number
+      - name: name
+        description: Exame's name.
+        in: body
+        type: string
+      - name: type
+        description: Type to use for create a exame.
+        in: body
+        required: true
+        schema:
+          type: string
+          enum: ['analise', 'clinica', 'imagem']
+      - name: status
+        in: body
+        schema:
+          type: string
+          enum: [ativo, inativo]
+    responses:
+      200:
+        description: Exame successfully updated
+        schema:
+          $ref: '#/definitions/Exame'
+  delete:
+    tags:
+      - Exame
+    description: Remove a exame
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the exame.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: Exame has been deleted
+      404:
+        description: Exame not found
+  get:
+    tags:
+      - Exame
+    description: List a exame
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the exame.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: Unique exame list
+        schema:
+          $ref: '#/definitions/Exame'
+      404:
+        description: Exame not found
+/exames:
+  get:
+    tags:
+      - Exame
+    description: List a exame
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the exame.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: All exame list
+        schema:
+          $ref: '#/definitions/Exames'
+      404:
+        description: Exame not found
+definitions:
+  Exame:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      type:
+        type: string
+      status:
+        type: string
+    required:
+      - name
+      - type
+  Exames:
+    type: object
+    properties:
+      schema:
+        $ref: '#/definitions/Exame'

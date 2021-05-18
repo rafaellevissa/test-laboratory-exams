@@ -18,6 +18,7 @@
         type: string
       - name: status
         in: body
+        description: Status to use for create a laboratory.
         schema:
           type: string
           enum: [ativo, inativo]
@@ -48,6 +49,7 @@
         in: body
         type: string
       - name: status
+        description: Status to use for create a laboratory.
         in: body
         schema:
           type: string
