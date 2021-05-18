@@ -20,10 +20,12 @@ services:
   app:
     build: .
     container_name: laboratory_api
+    environment:
+      PORTDOCKER: ${PORT}
     volumes:
       - ./:/app
     ports:
-      - ${PORT}:3344
+      - ${PORT}:${PORT}
     env_file:
       - .env
     depends_on:
