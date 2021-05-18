@@ -1,0 +1,135 @@
+/laboratory:
+  post:
+    description: Register a laboratory
+    tags:
+      - Laboratory
+    produces:
+      - application/json
+    parameters:
+      - name: name
+        description: Name to use for create a laboratory.
+        in: body
+        required: true
+        type: string
+      - name: address
+        description: Laboratory's address.
+        in: body
+        required: true
+        type: string
+      - name: status
+        in: body
+        schema:
+          type: string
+          enum: [ativo, inativo]
+    responses:
+      200:
+        description: Laboratory successfully registered
+        schema:
+          $ref: '#/definitions/Laboratory'
+/laboratory/:id:
+  put:
+    tags:
+      - Laboratory
+    description: Update a laboratory
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the laboratory.
+        in: query
+        required: true
+        type: number
+      - name: name
+        description: Laboratory's name.
+        in: body
+        type: string
+      - name: address
+        description: Laboratory's address.
+        in: body
+        type: string
+      - name: status
+        in: body
+        schema:
+          type: string
+          enum: [ativo, inativo]
+    responses:
+      200:
+        description: Laboratory successfully updated
+        schema:
+          $ref: '#/definitions/Laboratory'
+  delete:
+    tags:
+      - Laboratory
+    description: Remove a laboratory
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the laboratory.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: Laboratory has been deleted
+      404:
+        description: Laboratory not found
+  get:
+    tags:
+      - Laboratory
+    description: List a laboratory
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the laboratory.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: Unique laboratory list
+        schema:
+          $ref: '#/definitions/Laboratory'
+      404:
+        description: Laboratory not found
+/laboratories:
+  get:
+    tags:
+      - Laboratory
+    description: List a laboratory
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the laboratory.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: All laboratory list
+        schema:
+          $ref: '#/definitions/Laboratories'
+      404:
+        description: Laboratory not found
+definitions:
+  Laboratory:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      address:
+        type: string
+      status:
+        type: string
+    required:
+      - name
+      - address
+  Laboratories:
+    type: object
+    properties:
+      schema:
+        $ref: '#/definitions/Laboratory'

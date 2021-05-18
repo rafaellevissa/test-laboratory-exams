@@ -18,7 +18,7 @@ module.exports = {
         title: 'Laboratory documentation',
         version: '1.0.0',
       },
-  
+
       basePath: '/',
 
       // Example security definitions.
@@ -46,13 +46,13 @@ module.exports = {
 
     // Path to the API docs
     // Sample usage
-    // apis: [
-    //    'docs/**/*.yml',    // load recursive all .yml file in docs directory
-    //    'docs/**/*.js',     // load recursive all .js file in docs directory
-    // ]
     apis: [
-      'app/**/*.js',
-      'start/routes.js'
+      'docs/**/*.yml',    // load recursive all .yml file in docs directory
+      'docs/**/*.js',     // load recursive all .js file in docs directory
     ]
+    //apis: [
+    //  'app/**/*.js',
+    //  'start/routes.js'
+    // ]
   }
 }
