@@ -1,0 +1,96 @@
+/laboratory-exame:
+  post:
+    description: Register a relationship between laboratory and exame
+    tags:
+      - Laboratory Exame
+    produces:
+      - application/json
+    parameters:
+      - name: id_laboratory
+        in: body
+        required: true
+        type: number
+      - name: id_exam
+        in: body
+        required: true
+        type: number
+    responses:
+      200:
+        description: Relationship successfully registered
+        schema:
+          $ref: '#/definitions/LaboratoryExame'
+/laboratory-exame/:id:
+  delete:
+    tags:
+      - Laboratory Exame
+    description: Remove a relationship between laboratory and exame
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the record.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: record has been deleted
+      404:
+        description: record not found
+  get:
+    tags:
+      - Laboratory Exame
+    description: List a record
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the record.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: Unique record list
+        schema:
+          $ref: '#/definitions/LaboratoryExame'
+      404:
+        description: Record not found
+/laboratories-exames:
+  get:
+    tags:
+      - Laboratory Exame
+    description: List a relationship between laboratory and exame
+    produces:
+      - application/json
+    parameters:
+      - name: id
+        description: Id to use for find the record.
+        in: query
+        required: true
+        type: number
+    responses:
+      200:
+        description: All relationships list
+        schema:
+          $ref: '#/definitions/LaboratoryExame'
+      404:
+        description: Record not found
+definitions:
+  LaboratoryExame:
+    type: object
+    properties:
+      id:
+        type: number
+      id_laboratory:
+        type: number
+      id_exam:
+        type: number
+    required:
+      - id_laboratory
+      - id_exam
+  LaboratoryExames:
+    type: object
+    properties:
+      schema:
+        $ref: '#/definitions/LaboratoryExame'
