@@ -52,6 +52,26 @@ class LaboratoryController {
     const data = await LaboratoryRepository.store({ name, address, status: statusFormated })
     return response.json(data)
   }
+
+  async storeMany({ request, response }) {
+    const rules = {
+      'laboratories.*.address': 'required|string',
+      'laboratories.*.name': 'required|unique:laboratories,name|string',
+      'laboratories.*.status': 'in:ativo,inativo'
+    }
+
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      return response.status(401).json(validation.messages())
+    }
+
+    const { laboratories } = request.all()
+    const data = await LaboratoryRepository.storeMany(laboratories)
+  
+    return response.json(data)
+  }
+
   async update({ request, response, params }) {
     const rules = {
       id: 'required'

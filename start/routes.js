@@ -23,3 +23,9 @@ Route.get('/laboratories-exames', 'LaboratoryExameController.all')
 Route.post('/laboratory-exame', 'LaboratoryExameController.store')
 Route.get('/laboratory-exame/:id', 'LaboratoryExameController.unique')
 Route.delete('/laboratory-exame/:id', 'LaboratoryExameController.remove')
+
+Route.group(() => {
+
+  Route.post('laboratories', 'LaboratoryController.storeMany');
+
+}).prefix('batch');
