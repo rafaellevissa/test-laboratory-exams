@@ -14,6 +14,12 @@ class ExameRepository {
     return exame
   }
 
+  static async storeMany(data) {
+    const exams = await Exame.createMany(data)
+
+    return exams
+  }
+
   static async findByID(id) {
     const exame = await Exame.findBy('id', id)
     return exame

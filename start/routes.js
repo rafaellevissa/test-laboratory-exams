@@ -27,5 +27,6 @@ Route.delete('/laboratory-exame/:id', 'LaboratoryExameController.remove')
 Route.group(() => {
 
   Route.post('laboratories', 'LaboratoryController.storeMany');
+  Route.post('exames', 'ExameController.storeMany');
 
 }).prefix('batch');

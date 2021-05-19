@@ -55,6 +55,26 @@ class ExameController {
     const data = await ExameRepository.store({ name, status: statusFormated, type })
     return response.json(data)
   }
+
+  async storeMany({ request, response }) {
+    const rules = {
+      'exams.*.name': 'required|unique:exams,name|string',
+      'exams.*.type': 'in:analise,clinica,imagem',
+      'exams.*.status': 'in:ativo,inativo'
+    }
+
+    const validation = await validate(request.all(), rules)
+
+    if (validation.fails()) {
+      return response.status(401).json(validation.messages())
+    }
+
+    const { exams } = request.all()
+    const data = await ExameRepository.storeMany(exams)
+  
+    return response.json(data)
+  }
+
   async update({ request, response, params }) {
     const rules = {
       id: 'required'
